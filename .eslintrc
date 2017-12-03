@@ -1,0 +1,24 @@
+{
+	"root": true,
+	"env": {
+		"node": true,
+		"es6": true,
+		"mocha": true
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"sourceType": "module",
+		// use for new features such as arrow-functions
+		"ecmaVersion": 8
+	},
+	"rules": {
+		//disable
+		"one-var": "off",
+		//warn
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"no-unexpected-multiline": "warn",
+		//error
+		"no-inline-comments": "error"
+	}
+}

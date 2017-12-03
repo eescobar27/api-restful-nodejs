@@ -4,9 +4,12 @@
   "description": "restful api",
   "main": "src/server.js",
   "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node src/server.js",
-	"start-dev": "node -r dotenv/config src/server.js dotenv_config_path=./vars.env"	
+    "lint": "eslint ./src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "start-dev": "node -r dotenv/config src/server.js dotenv_config_path=./vars.env",
+    "docker-build": "docker build -t restful-api .",
+    "docker-dev": "docker run --env-file ./vars.env -p 8080:8080 restful-api"
   },
   "repository": {
     "type": "git",
@@ -24,7 +27,8 @@
   },
   "homepage": "https://github.com/eescobar27/api-restful#readme",
   "devDependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "eslint": "^4.12.1"
   },
   "dependencies": {
     "boom": "^6.0.0",
