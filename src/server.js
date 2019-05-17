@@ -1,50 +1,40 @@
-const Hapi = require("hapi");
-const HapiSwagger = require("hapi-swagger");
-const Good = require("good");
-const Inert = require("inert");
-const Vision = require("vision");
+"use strict";
 
+const Hapi = require("@hapi/hapi");
 const Config = require("./server.config");
+const DBConnection = require("./db_connection");
 
-const server = new Hapi.Server();
-server.connection(Config.webServer);
-server.register([
-	{
-		register: Good,
-		options: Config.loggerOptions
-	},
-	{
-		register: HapiSwagger,
-		options: Config.swaggerOptions
-	},
-	Inert,
-	Vision
-], (error) => {
-	if(error) {
-		console.log(error);
-	}
-});
+const server = Hapi.server(Config.webServer);
 
 server.route([
 	{
-		method: "GET",
-		path: "/health",
-		handler: (request, reply) => {
-			reply();
-		},
+		method: 'GET',
+		path:'/health',
+		handler: (request, h) => h.response(),
 		config: {
 			auth: false,
 			tags: ["api"]
 		}
-	}
+	},
+	{
+        method: '*',
+        path: '/{any*}',
+        handler: (request, h) => h.response().code(404)
+    }
 ]);
 
-server.start((error) => {
-
-	if(error) {
-		console.log(error);
-		return;
-	}
-
-	server.log("info", `server running at: ${server.info.uri}`);
+process.on("unhandledRejection", (err) => {
+    console.log(err);
+    process.exit(1);
 });
+
+(async () => {
+	try {
+		await DBConnection.connect();
+		await server.start();
+		console.log(`server running on: ${server.info.uri}`);
+	}
+	catch (error) {
+		console.log(error);
+	}
+})();

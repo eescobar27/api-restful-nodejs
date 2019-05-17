@@ -2,8 +2,8 @@
 
 ## Requirements
 
-	nodeJS v8.5+
-	npm 5.3+
+	NodeJS v10+
+	npm v6+
 
 ## Setup
 
