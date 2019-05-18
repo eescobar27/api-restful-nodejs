@@ -14,8 +14,7 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 
-ARG buildno
-RUN echo "Build number: $buildno"
+USER node
 
 EXPOSE 8080
 CMD [ "node", "src/server.js" ]
