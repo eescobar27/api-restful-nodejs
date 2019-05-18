@@ -1,6 +1,9 @@
 "use strict";
 
 const Hapi = require("@hapi/hapi");
+const Good = require("@hapi/good");
+const Inert = require("@hapi/inert");
+const Vision = require("@hapi/vision");
 const Config = require("./server.config");
 const DBConnection = require("./db_connection");
 
@@ -30,9 +33,20 @@ process.on("unhandledRejection", (err) => {
 
 (async () => {
 	try {
+		await server.register([
+			{
+				plugin: Good,
+				options: Config.loggerOptions
+			},
+			Inert,
+			Vision
+		]);
+
 		await DBConnection.connect();
 		await server.start();
-		console.log(`server running on: ${server.info.uri}`);
+
+		server.log("info", `connected to db: ${DBConnection.DATABASE_NAME}`);
+		server.log("info", `server running on: ${server.info.uri}`);
 	}
 	catch (error) {
 		console.log(error);
