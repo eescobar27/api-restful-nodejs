@@ -4,6 +4,7 @@ const Hapi = require("@hapi/hapi");
 const Good = require("@hapi/good");
 const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
+const HapiSwagger = require("hapi-swagger");
 const Config = require("./server.config");
 const DBConnection = require("./db_connection");
 
@@ -37,6 +38,10 @@ process.on("unhandledRejection", (err) => {
 			{
 				plugin: Good,
 				options: Config.loggerOptions
+			},
+			{
+				plugin: HapiSwagger,
+				options: Config.swaggerOptions
 			},
 			Inert,
 			Vision

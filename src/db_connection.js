@@ -9,5 +9,6 @@ const connect = () => Mongoose.connect(connectionString, { useNewUrlParser: true
 
 module.exports = {
 	connect,
+	connection: Mongoose.connection,
 	DATABASE_NAME
 };

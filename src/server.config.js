@@ -1,3 +1,9 @@
+"use strict";
+
+const Package = require("../package.json");
+
+process.title = `${Package.name}@${Package.version}`;
+
 module.exports = {
 	webServer: {
 		port: 8080,
@@ -18,6 +24,12 @@ module.exports = {
 				},
 				"stdout"
 			]
+		}
+	},
+	swaggerOptions: {
+		info: {
+			title: "API Documentation",
+			version: `${Package.version}`
 		}
 	}
 };
