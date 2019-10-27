@@ -5,9 +5,11 @@
   "main": "src/server.js",
   "scripts": {
     "lint": "eslint ./src",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
-    "start-dev": "node -r dotenv/config src/server.js dotenv_config_path=./vars.env",
+	"test": "echo \"Error: no test specified\" && exit 1",
+	"build": "npm run lint",
+	"prestart-dev": "npm run build",
+	"start-dev": "node -r dotenv/config src/server.js dotenv_config_path=./vars.env",
+	"start": "node src/server.js",
     "docker-build": "docker build -t restful-api .",
     "docker-dev": "docker run --env-file ./vars.env -p 8080:8080 restful-api"
   },
@@ -28,17 +30,17 @@
   "homepage": "https://github.com/eescobar27/api-restful#readme",
   "devDependencies": {
     "dotenv": "^8.0.0",
-    "eslint": "^5.16.0"
+    "eslint": "^6.6.0"
   },
   "dependencies": {
     "@hapi/good": "^8.2.0",
     "@hapi/good-console": "^8.1.0",
     "@hapi/good-squeeze": "^5.2.0",
-    "@hapi/hapi": "^18.3.1",
+    "@hapi/hapi": "^18.4.0",
     "@hapi/inert": "^5.2.0",
     "@hapi/joi": "^15.0.3",
     "@hapi/vision": "^5.5.2",
-    "hapi-swagger": "^10.0.1",
-    "mongoose": "^5.5.9"
+    "hapi-swagger": "^10.2.0",
+    "mongoose": "^5.7.7"
   }
 }

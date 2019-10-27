@@ -1,6 +1,5 @@
 .gitignore
-.eslintignore
-.eslintrc
 .vscode
 node_modules
 vars.env
+Dockerfile

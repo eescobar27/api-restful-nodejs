@@ -1,19 +1,29 @@
+# stage 0 : builder
+# install all dependencies (including dev)
+# runs test and validate code syntax
+# if this goes well then continue to the next stage
+FROM node:10.15.3 AS builder
+
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm ci
+
+COPY . ./
+RUN npm run build
+
+# stage: production
+# builds code for production
+# installs only production dependencies
+# copies the built artifact from the previous stage
 FROM node:10.15.3
 
-# Create app directory
 WORKDIR /usr/src/app
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package*.json ./
 
+# building code for production
 RUN npm ci --only=production
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
-COPY . .
-
+COPY --from=builder /usr/src/app/src /usr/src/app/src
 USER node
 
 EXPOSE 8080
