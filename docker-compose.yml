@@ -1,0 +1,22 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+    - "8080:8080"
+    depends_on:
+      - db
+    env_file:
+    - vars.env
+    environment:
+      - DATABASE_HOST=mongo 
+  db:
+    image: mongo:3.4.4
+    container_name: mongo
+    # disable logging
+    logging:
+      driver: none
+    # expose ports without publishing them to the host machine
+    # they’ll only be accessible to linked services.
+    expose:
+      - 27017
