@@ -11,7 +11,7 @@ services:
     environment:
       - DATABASE_HOST=mongo 
   db:
-    image: mongo:3.4.4
+    image: mongo:4.4.2
     container_name: mongo
     # disable logging
     logging:

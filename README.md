@@ -2,7 +2,7 @@
 
 ## Requirements
 
-	NodeJS v10+
+	NodeJS v12+
 	npm v6+
 
 ## Setup
