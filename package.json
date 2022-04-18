@@ -29,18 +29,15 @@
   },
   "homepage": "https://github.com/eescobar27/api-restful#readme",
   "devDependencies": {
-    "dotenv": "^10.0.0",
-    "eslint": "^7.29.0"
+    "dotenv": "^16.0.0",
+    "eslint": "^8.13.0"
   },
   "dependencies": {
-    "@hapi/good": "^9.0.1",
-    "@hapi/good-console": "^9.0.1",
-    "@hapi/good-squeeze": "^6.0.0",
-    "@hapi/hapi": "^20.1.4",
-    "@hapi/inert": "^6.0.3",
+    "@hapi/hapi": "^20.2.1",
+    "@hapi/inert": "^6.0.5",
     "@hapi/vision": "^6.1.0",
-    "hapi-swagger": "^14.2.0",
-    "joi": "^17.4.0",
-    "mongoose": "^5.12.14"
+    "hapi-swagger": "^14.3.0",
+    "joi": "^17.6.0",
+    "mongoose": "^6.3.0"
   }
 }

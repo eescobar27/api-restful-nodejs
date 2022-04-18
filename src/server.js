@@ -1,7 +1,6 @@
 "use strict";
 
 const Hapi = require("@hapi/hapi");
-const Good = require("@hapi/good");
 const Inert = require("@hapi/inert");
 const Vision = require("@hapi/vision");
 const HapiSwagger = require("hapi-swagger");
@@ -35,10 +34,6 @@ process.on("unhandledRejection", (err) => {
 (async () => {
 	try {
 		await server.register([
-			{
-				plugin: Good,
-				options: Config.loggerOptions
-			},
 			{
 				plugin: HapiSwagger,
 				options: Config.swaggerOptions

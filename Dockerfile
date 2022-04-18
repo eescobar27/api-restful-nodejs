@@ -2,7 +2,7 @@
 # install all dependencies (including dev)
 # runs test and validate code syntax
 # if this goes well then continue to the next stage
-FROM node:12.21.1 AS builder
+FROM node:16.14.2 AS builder
 
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -15,7 +15,7 @@ RUN npm run build
 # builds code for production
 # installs only production dependencies
 # copies the built artifact from the previous stage
-FROM node:12.22.1
+FROM node:16.14.2
 
 WORKDIR /usr/src/app
 COPY package*.json ./
