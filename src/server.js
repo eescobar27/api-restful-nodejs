@@ -9,6 +9,11 @@ const DBConnection = require("./db_connection");
 
 const server = Hapi.server(Config.webServer);
 
+// adding listener for event logging
+server.events.on('log', (event, tags) => {
+	console.log(`${new Date(event.timestamp).toUTCString()} - ${event.tags} - ${event.data}`);
+});
+
 server.route([
 	{
 		method: 'GET',

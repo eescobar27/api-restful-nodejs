@@ -2,7 +2,7 @@
 # install all dependencies (including dev)
 # runs test and validate code syntax
 # if this goes well then continue to the next stage
-FROM node:16.14.2 AS builder
+FROM node:16.16.0 AS builder
 
 WORKDIR /usr/src/app
 COPY package*.json ./
